@@ -1,0 +1,225 @@
+:root {
+    /* Colors */
+    --purple-50: hsl(260, 100%, 95%);
+    --purple-300: hsl(264, 82%, 80%);
+    --purple-500: hsl(263, 55%, 52%);
+
+    --white: hsl(0, 0%, 100%);
+    --grey-100: hsl(214, 17%, 92%);
+    --grey-200: hsl(0, 0%, 81%);
+    --grey-400: hsl(224, 10%, 45%);
+    --grey-500: hsl(217, 19%, 35%);
+    --dark-blue: hsl(219, 29%, 14%);
+    --black: hsl(0, 0%, 7%);
+
+    /* Typography */
+    --fs-body: 13px;
+
+    /* Layout */
+    --radius: 10px;
+    --shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: "Barlow Semi Condensed", system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    font-size: var(--fs-body);
+    background: var(--grey-100);
+    color: var(--black);
+    line-height: 1.5;
+}
+
+/* Page Wrapper */
+.page {
+    min-height: 100%;
+    display: grid;
+    place-items: center;
+    padding: 72px 24px;
+}
+
+/* Grid Layout */
+.testimonials {
+    width: min(1110px, 100%);
+    display: grid;
+    gap: 24px;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "daniel"
+        "jonathan"
+        "jeanette"
+        "patrick"
+        "kira";
+}
+
+/* Cards */
+.card {
+    border-radius: var(--radius);
+    padding: 26px 32px 32px;
+    box-shadow: var(--shadow);
+    background: var(--white);
+}
+
+.card__header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.card__avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    object-fit: cover;
+    flex: 0 0 auto;
+}
+
+.card__meta {
+    line-height: 1.1;
+}
+
+.card__name {
+    margin: 0;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.card__badge {
+    margin: 4px 0 0;
+    font-size: 0.75rem;
+    opacity: 0.5;
+}
+
+.card__title {
+    margin: 0 0 16px;
+    font-size: 1.25rem;
+    line-height: 1.25;
+    font-weight: 600;
+}
+
+.card__quote {
+    margin: 0;
+    opacity: 0.7;
+}
+
+/* Individual card themes + grid areas */
+.card--daniel {
+    grid-area: daniel;
+    background: var(--purple-500);
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+.card--daniel .card__avatar {
+    border: 2px solid rgba(255, 255, 255, 0.35);
+}
+
+/* Quotation background pattern */
+.card--daniel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 24px;
+    width: 104px;
+    height: 102px;
+    background: url("./images/bg-pattern-quotation.svg") no-repeat top right;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.card--daniel .card__title,
+.card--daniel .card__quote {
+    position: relative;
+    z-index: 1;
+}
+
+.card--jonathan {
+    grid-area: jonathan;
+    background: var(--grey-500);
+    color: var(--white);
+}
+
+.card--jonathan .card__avatar {
+    border: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.card--jeanette {
+    grid-area: jeanette;
+    background: var(--white);
+    color: var(--grey-500);
+}
+
+.card--patrick {
+    grid-area: patrick;
+    background: var(--dark-blue);
+    color: var(--white);
+}
+
+.card--patrick .card__avatar {
+    border: 2px solid var(--purple-500);
+}
+
+.card--kira {
+    grid-area: kira;
+    background: var(--white);
+    color: var(--grey-500);
+}
+
+/* Make “light cards” text look like the design */
+.card--jeanette .card__badge,
+.card--kira .card__badge {
+    opacity: 0.6;
+}
+
+.card--jeanette .card__quote,
+.card--kira .card__quote {
+    opacity: 0.75;
+}
+
+/* Desktop layout */
+@media (min-width: 1100px) {
+    .page {
+        padding: 80px 24px;
+    }
+
+    .testimonials {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-areas:
+            "daniel daniel jonathan kira"
+            "jeanette patrick patrick kira";
+        align-items: stretch;
+    }
+
+    .card {
+        height: 100%;
+    }
+}
+
+.attribution {
+    margin-top: 36px;
+    font-size: 12px;
+    color: var(--grey-500);
+    text-align: center;
+}
+
+.attribution a {
+    color: #3C91E6;
+    text-decoration: none;
+}
+
+.attribution a:hover,
+.attribution a:focus-visible {
+    text-decoration: underline;
+}
